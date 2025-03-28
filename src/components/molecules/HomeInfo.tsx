@@ -19,7 +19,7 @@ const HomeInfo: React.FC = () => {
                     Iniciar
                 </a>
 
-                <a href="/ruta" className="bg-yellow-400 text-white px-12 py-2 rounded-md shadow-md hover:bg-yellow-500 transition">
+                <a href="/register" className="bg-yellow-400 text-white px-12 py-2 rounded-md shadow-md hover:bg-yellow-500 transition">
                     Register
                 </a>
             </div>
