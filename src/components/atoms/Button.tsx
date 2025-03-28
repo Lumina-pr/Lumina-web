@@ -4,12 +4,12 @@ interface ButtonProps {
   text: string;
   onClick?: () => void;
   type?: "button" | "submit";
+  className?: string;
 }
-
-const Button: React.FC<ButtonProps> = ({ text, onClick, type = "button" }) => {
+const Button: React.FC<ButtonProps> = ({ text, onClick, type = "button", className=""}) => {
   return (
     <button 
-      className="w-full bg-yellow-400 text-white px-4 py-2 rounded-xl hover:bg-yellow-600 transition"
+      className={className}
       onClick={onClick}
       type={type}
     >
