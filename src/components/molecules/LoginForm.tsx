@@ -7,6 +7,8 @@ import Label from "../atoms/Label";
 import Divider from "../atoms/Divider";
 import { FaGoogle, FaApple, FaFacebook } from "react-icons/fa";
 
+import Link from 'next/link';
+
 const LoginForm: React.FC = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -18,7 +20,7 @@ const LoginForm: React.FC = () => {
 
     return (
         <form onSubmit={handleSubmit} className="w-full max-w-sm space-y-6 p-6 bg-white rounded-lg">
-            <h2 className="text-xl font-bold text-gray-700 text-center">Bienvenido de vuelta</h2>
+            <h2 className="text-xl font-bold text-gray-700 text-center mb-10">¡Bienvenido!</h2>
 
             <div>
                 <Label text="Correo o Teléfono" htmlFor="email"/>
@@ -45,7 +47,11 @@ const LoginForm: React.FC = () => {
                 </div>
             </div>
 
-            <Button text="Iniciar" type="submit" />
+            <Button 
+            text="Iniciar" 
+            type="submit" 
+            className="w-full bg-yellow-400 text-white px-4 py-2 rounded-xl hover:bg-yellow-600 transition"
+            />
 
             <Divider text="O inicia con otro" />
 
@@ -56,7 +62,7 @@ const LoginForm: React.FC = () => {
             </div>
 
             <div className="text-center text-sm text-gray-600">
-                ¿Aún no tienes cuenta? <a href="#" className="text-yellow-500 hover:underline">Regístrate</a>
+                ¿Aún no tienes cuenta? <Link href="/register" className="text-yellow-500 hover:underline">Regístrate</Link>
             </div>
         </form>
     );

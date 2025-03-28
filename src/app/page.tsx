@@ -1,4 +1,5 @@
-import RegisterTemplate from "@/components/templates/RegisterTemplate";
+import HomePTemplate from "@/components/templates/HomePTemplate";
+
 export default function Home() {
-  return <RegisterTemplate />;
+  return <HomePTemplate />;
 }
