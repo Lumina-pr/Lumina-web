@@ -18,7 +18,7 @@ const LoginForm: React.FC = () => {
 
     return (
         <form onSubmit={handleSubmit} className="w-full max-w-sm space-y-6 p-6 bg-white rounded-lg">
-            <h2 className="text-xl font-bold text-gray-700 text-center">Bienvenido de vuelta</h2>
+            <h2 className="text-xl font-bold text-gray-700 text-center mb-10">¡Bienvenido!</h2>
 
             <div>
                 <Label text="Correo o Teléfono" htmlFor="email"/>
