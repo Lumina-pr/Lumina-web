@@ -7,6 +7,8 @@ import Label from "../atoms/Label";
 import Divider from "../atoms/Divider";
 import { FaGoogle, FaApple, FaFacebook } from "react-icons/fa";
 
+import Link from 'next/link';
+
 const LoginForm: React.FC = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -56,7 +58,7 @@ const LoginForm: React.FC = () => {
             </div>
 
             <div className="text-center text-sm text-gray-600">
-                ¿Aún no tienes cuenta? <a href="#" className="text-yellow-500 hover:underline">Regístrate</a>
+                ¿Aún no tienes cuenta? <Link href="/register" className="text-yellow-500 hover:underline">Regístrate</Link>
             </div>
         </form>
     );

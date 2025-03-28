@@ -1,5 +1,6 @@
 
-import RegisterTemplate from "@/components/templates/RegisterTemplate";
 export default function Home() {
-  return <RegisterTemplate />;
+  return (
+    <h1>Aqui va la landing</h1>
+  );
 }
