@@ -1,6 +1,5 @@
-import LoginTemplate from "@/components/templates/LoginTemplate";
-
+import HomePTemplate from "@/components/templates/HomePTemplate";
 
 export default function Home() {
-  return <LoginTemplate />;
+  return <HomePTemplate />;
 }

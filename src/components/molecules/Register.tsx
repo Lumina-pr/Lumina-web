@@ -12,22 +12,33 @@ import Link from 'next/link';
 const LoginForm: React.FC = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [nombre, setNombre] = useState("");
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        console.log("Login con:", { email, password });
+        console.log("Login con:", { email, password, nombre});
     };
 
     return (
-        <form onSubmit={handleSubmit} className="w-full max-w-sm space-y-6 p-6 bg-white rounded-lg">
-            <h2 className="text-xl font-bold text-gray-700 text-center mb-10">¡Bienvenido!</h2>
+        <form onSubmit={handleSubmit} className="w-full max-w-sm space-y-6 p-6  rounded-lg">
+            <h2 className="text-xl font-bold text-gray-700 text-center mb-15">Crea tu cuenta</h2>
 
             <div>
-                <Label text="Correo o Teléfono" htmlFor="email"/>
+                <Label text="Nombre completo" htmlFor="nombre"/>
                 <Input
-                    type="email"
-                    id="email"
-                    placeholder="Ingresa tu correo o teléfono"
+                    type="text"
+                    id="nombre"
+                    placeholder="Ingrese su nombre"
+                    value={nombre}
+                    onChange={(e) => setNombre(e.target.value)}
+                />
+            </div>
+            <div>
+                <Label text="Correo electrónico" htmlFor="nombre"/>
+                <Input
+                    type="text"
+                    id="nombre"
+                    placeholder="Ingrese su nombre"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                 />
@@ -42,10 +53,11 @@ const LoginForm: React.FC = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
-                <div className="text-right mt-2 text-xs text-gray-400">
-                    <a href="#" className="hover:underline">¿Olvidaste tu contraseña?</a>
+                <div className="text-left mt-1 text-xs text-gray-400">
+                    <a href="#" className="hover:underline">Al menos 8 caracteres</a>
                 </div>
             </div>
+
 
             <Button 
             text="Iniciar" 
@@ -62,7 +74,7 @@ const LoginForm: React.FC = () => {
             </div>
 
             <div className="text-center text-sm text-gray-600">
-                ¿Aún no tienes cuenta? <Link href="/register" className="text-yellow-500 hover:underline">Regístrate</Link>
+                ¿Ya tienes una cuenta? <Link href="/login" className="text-yellow-500 hover:underline">Iniciar Sesión</Link>
             </div>
         </form>
     );
