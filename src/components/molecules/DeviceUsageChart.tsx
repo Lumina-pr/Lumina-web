@@ -17,11 +17,11 @@ interface DeviceUsageChartProps {
 const getIcon = (name: string) => {
     switch (name.toLowerCase()) {
         case "wifi":
-            return <FaWifi className="text-yellow-500 text-3xl" />;
+            return <FaWifi className="text-yellow-500 text-2xl" />;
         case "luz":
-            return <FaLightbulb className="text-yellow-500 text-3xl" />;
+            return <FaLightbulb className="text-yellow-500 text-2xl" />;
         case "purificador":
-            return <FaWind className="text-yellow-500 text-3xl" />;
+            return <FaWind className="text-yellow-500 text-2xl" />;
         default:
             return null;
     }
@@ -51,9 +51,9 @@ const DeviceUsageChart: React.FC<DeviceUsageChartProps> = ({ name, dataPoints })
 
     return (
         <ChartContainer>
-            <div className="flex items-center gap-2 p-1">
+            <div className="flex items-center gap-2 pb-2">
                 {getIcon(name)}
-                <Title text={name} className=" text-yellow-500 font-semibold" />
+                <Title text={name} className=" text-yellow-500 text-sm font-semibold" />
             </div>
             <Line data={data} options={options} />
         </ChartContainer>

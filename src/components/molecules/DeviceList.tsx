@@ -12,23 +12,20 @@ const devices = [
 
 const DeviceList: React.FC = () => {
     return (
+        <div className="w-full ">
+            <h1 className="text-xl font-semibold text-gray-800 pb-3">Hogar de Luis</h1>
 
-        <div>
-            <h1 className="text-2xl font-semibold text-gray-800 pb-2">Hogar de Luis</h1>
-
-            <div className="grid grid-cols-6 gap-1 ">
+            <div className="grid grid-cols-[repeat(auto-fit,110px)] gap-2">
                 {devices.map((device, index) => (
                     <DeviceCard key={index} name={device.name} icon={device.icon} isOn={device.isOn} />
                 ))}
 
-                <div className="p-4 bg-white rounded-lg shadow-md flex flex-col items-center justify-center w-36 h-36 border border-gray-300">
-                    <FaPlus className="text-yellow-500 text-2xl" />
-                    <span className="text-yellow-500 font-sans text-lg">Añadir nuevo</span>
+                <div className="w-[110px] h-[120px] bg-white rounded-lg shadow-md flex flex-col items-center justify-center cursor-pointer hover:bg-gray-100 transition">
+                    <FaPlus className="text-yellow-500 text-xl" />
+                    <span className="text-yellow-500 text-sm font-medium">Añadir</span>
                 </div>
             </div>
         </div>
-
-        
     );
 };
 
