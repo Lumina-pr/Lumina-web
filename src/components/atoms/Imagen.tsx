@@ -7,7 +7,7 @@
     }
 
     const Imagen: React.FC<ImagenProps> = ({ src, alt, className }) => {
-        return <img src={src} alt={alt} className={`w-full h-full object-cover ${className}`} />;
+        return <img src={src} alt={alt} className={`object-cover ${className}`} />;
     };
-
+    
     export default Imagen;

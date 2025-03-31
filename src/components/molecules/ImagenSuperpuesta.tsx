@@ -17,11 +17,11 @@ const ImagenSuperpuesta: React.FC<ImagenSuperpuestaProps> = ({
     return (
         <div className="relative w-[250px] h-[300px] top-5 right-20">
             <div className="absolute -top-2 -right-20 w-full h-full rounded-2xl overflow-hidden shadow-lg">
-                <Imagen src={imagenTrasera} alt={altTrasera} className="rounded-2xl" />
+                <Imagen src={imagenTrasera} alt={altTrasera} className="w-full h-full rounded-2xl" />
             </div>
 
             <div className="absolute top-20 right-20 w-full h-full rounded-2xl overflow-hidden shadow-xl">
-                <Imagen src={imagenFrontal} alt={altFrontal} className="rounded-2xl" />
+                <Imagen src={imagenFrontal} alt={altFrontal} className="w-full h-full rounded-2xl" />
             </div>
         </div>
     );

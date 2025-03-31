@@ -21,7 +21,7 @@ const HomeHello: React.FC = () => {
             <Imagen 
                 src="/images/imagen3.jpg" 
                 alt="Home" 
-                className="w-28 h-28 pr-2"
+                className="w-32 h-32 pr-2"
             />
 
         </div>
