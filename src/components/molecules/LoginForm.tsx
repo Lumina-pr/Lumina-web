@@ -5,17 +5,21 @@ import Input from "../atoms/Input";
 import Button from "../atoms/Button";
 import Label from "../atoms/Label";
 import Divider from "../atoms/Divider";
-import { FaGoogle, FaApple, FaFacebook } from "react-icons/fa";
+import { FaGoogle, FaApple, FaFacebook} from "react-icons/fa";
+
 
 import Link from 'next/link';
+import { useRouter } from "next/navigation";
 
 const LoginForm: React.FC = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const router = useRouter(); 
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         console.log("Login con:", { email, password });
+        router.push("/home/dashboard");
     };
 
     return (
@@ -48,9 +52,9 @@ const LoginForm: React.FC = () => {
             </div>
 
             <Button 
-            text="Iniciar" 
-            type="submit" 
-            className="w-full bg-yellow-400 text-white px-4 py-2 rounded-xl hover:bg-yellow-600 transition"
+                text="Iniciar" 
+                type="submit" 
+                className="w-full bg-yellow-400 text-white px-4 py-2 rounded-xl hover:bg-yellow-600 transition"
             />
 
             <Divider text="O inicia con otro" />

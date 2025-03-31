@@ -1,4 +1,4 @@
-"use client"; 
+"use client";
 
 import React, { useState } from "react";
 import Input from "../atoms/Input";
@@ -6,17 +6,20 @@ import Button from "../atoms/Button";
 import Label from "../atoms/Label";
 import Divider from "../atoms/Divider";
 import { FaGoogle, FaApple, FaFacebook } from "react-icons/fa";
-
 import Link from 'next/link';
+import { useRouter } from "next/navigation";  
 
 const LoginForm: React.FC = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [nombre, setNombre] = useState("");
+    
+    const router = useRouter(); 
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        console.log("Login con:", { email, password, nombre});
+        console.log("Login con:", { email, password, nombre });
+        router.push("/home/dashboard"); 
     };
 
     return (
@@ -34,11 +37,11 @@ const LoginForm: React.FC = () => {
                 />
             </div>
             <div>
-                <Label text="Correo electrónico" htmlFor="nombre"/>
+                <Label text="Correo electrónico" htmlFor="email"/>
                 <Input
                     type="text"
-                    id="nombre"
-                    placeholder="Ingrese su nombre"
+                    id="email"
+                    placeholder="Ingrese su correo"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                 />
@@ -58,11 +61,10 @@ const LoginForm: React.FC = () => {
                 </div>
             </div>
 
-
             <Button 
-            text="Iniciar" 
-            type="submit" 
-            className="w-full bg-yellow-400 text-white px-4 py-2 rounded-xl hover:bg-yellow-600 transition"
+                text="Iniciar" 
+                type="submit" 
+                className="w-full bg-yellow-400 text-white px-4 py-2 rounded-xl hover:bg-yellow-600 transition"
             />
 
             <Divider text="O inicia con otro" />

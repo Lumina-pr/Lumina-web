@@ -16,7 +16,7 @@ function Page() {
   ];
   return (
     <div className='flex'>
-      <div className={`${open ? 'w-72' : 'w-20'} transition-all duration-500 p-2 h-screen relative shadow-md
+      <div className={`${open ? 'w-72' : 'w-20'} transition-all duration-500 p-2 min-h-screen relative shadow-md
         
         bg-white`}>
         <Image src="/images/control.png" alt='control'width={25} height={25}

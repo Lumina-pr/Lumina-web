@@ -1,5 +1,5 @@
 import React from "react";
-import Title from "../atoms/Title";
+import Title from "../atoms/TitleLumina";
 
 const HomeHeader: React.FC = () => {
     return (
