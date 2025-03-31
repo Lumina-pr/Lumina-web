@@ -6,8 +6,8 @@ import DeviceUsageChart from "../molecules/DeviceUsageChart";
 
 const DashboardCard: React.FC = () => {
     return (
-        <div className="w-full h-full flex flex-col bg-gray-100 p-4">
-            <header className="flex flex-col md:flex-row items-start gap-4 pt-2">
+        <div className="w-full h-full flex flex-col bg-gray-100 p-3">
+            <header className="flex flex-col md:flex-row items-start gap-4">
                 <HomeHello />
                 <HomeHelp />
             </header>

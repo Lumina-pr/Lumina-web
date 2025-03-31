@@ -39,27 +39,26 @@ function Page() {
               open ? "opacity-100" : "opacity-0"}`}>Lumina</h2>
           ) : null}
         </div>
-        <ul className="mt-10 ml-2 flex-grow">
+        <ul className="mt-10 ml-2 flex flex-col flex-grow">
           {menuList.map((menu, index) => (
             <li
               key={index}
-              className={`flex items-center gap-8 p-3 text-black hover:bg-amber-400 rounded-md cursor-pointer ${
-                !open && "justify-center -ml-2"
-              } transition-all duration-300 hover:text-white ${
-                menu.gap ? "mt-52" : "mt-2"
-              }`}
+              className={`flex items-center gap-8 p-3 text-black hover:bg-amber-400 rounded-md cursor-pointer 
+                ${!open && "justify-center -ml-2"} 
+                transition-all duration-300 hover:text-white 
+                ${menu.title === "Log out" ? "mt-auto mb-1/2" : "mt-2"}`}
             >
-               <span className="text-2xl flex-shrink-0">{menu.icon}</span>
+              <span className="text-2xl flex-shrink-0">{menu.icon}</span>
               <span
-                className={`absolute left-16 text-lg font-bold transition-opacity duration-350 ${
-                  open ? "opacity-100" : "opacity-0"
-                }`}
+                className={`absolute left-16 text-lg font-bold transition-opacity duration-350 
+                ${open ? "opacity-100" : "opacity-0"}`}
               >
                 {menu.title}
               </span>
             </li>
           ))}
         </ul>
+
       </div>
     </div>
   );
