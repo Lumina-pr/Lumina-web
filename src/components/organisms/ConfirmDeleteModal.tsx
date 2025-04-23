@@ -1,4 +1,3 @@
-// components/organisms/ConfirmDeleteModal.tsx
 import React from "react";
 import Modal from "../molecules/ModalBase";
 import Button from "../atoms/Button";
