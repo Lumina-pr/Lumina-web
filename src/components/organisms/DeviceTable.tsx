@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import DeviceRow from "@/components/molecules/DeviceRow";
 import PageTitles from "../atoms/PageTitles";
 import Button from "../atoms/Button"; 
@@ -12,14 +12,16 @@ type Device = {
     status: "Encendido" | "Apagado";
 };
 
-const devices: Device[] = [
-    { id: 110, name: "Tablet", status: "Apagado" },
-    { id: 221, name: "Laptop", status: "Apagado" },
-    { id: 323, name: "Celular", status: "Encendido" },
-];
-
 
 const DeviceTable: React.FC = () => {
+    const [devices, setDevices] = useState<Device[]>([
+        { id: 110, name: "Tablet", status: "Apagado" },
+        { id: 221, name: "Laptop", status: "Apagado" },
+        { id: 323, name: "Celular", status: "Encendido" },
+    ]);
+    const handleDelete = (id: number) => {
+        setDevices((prevDevices) => prevDevices.filter((device) => device.id !== id));
+    };
     return (
         <div className="bg-white p-6 rounded-lg shadow">
             <div className="flex justify-between items-center mb-4">
@@ -41,7 +43,7 @@ const DeviceTable: React.FC = () => {
                         name={device.name}
                         status={device.status}
                         onEdit={() => console.log("Edit", device.id)}
-                        onDelete={() => console.log("Delete", device.id)}
+                        onDelete={() => handleDelete(device.id)}
                         />
                 ))}
                 </tbody>
