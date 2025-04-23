@@ -12,7 +12,7 @@ const ConfirmDeleteModal: React.FC<ConfirmDeleteModalProps> = ({ onClose, onConf
   return (
     <Modal onClose={onClose}>
       <h2 className="text-lg font-semibold mb-4 text-center text-gray-800">¿Eliminar elemento?</h2>
-      <div className="bg-red-600 rounded-full p-5 w-5 height-5">
+      <div className="bg-red-600 rounded-full p-5 w-6 h-6 ">
           <TriangleIcon  />
         </div>
       <p className="mb-6 text-sm text-gray-600 text-center">
