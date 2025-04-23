@@ -11,10 +11,10 @@ interface ConfirmDeleteModalProps {
 const ConfirmDeleteModal: React.FC<ConfirmDeleteModalProps> = ({ onClose, onConfirm }) => {
   return (
     <Modal onClose={onClose}>
-      <h2 className="text-lg font-semibold mb-4 text-center text-gray-800">¿Eliminar elemento?</h2>
-      <div className="bg-red-600 rounded-full p-5 w-6 h-6 ">
+      <div className="bg-red-600 rounded-full w-10 h-10 flex justify-center items-center mx-auto mb-4">
           <TriangleIcon  />
         </div>
+      <h2 className="text-lg font-semibold mb-4 text-center text-gray-800">¿Eliminar elemento?</h2>
       <p className="mb-6 text-sm text-gray-600 text-center">
         ¿Seguro que desea eliminar este elemento? Esta acción no se puede deshacer.
       </p>
