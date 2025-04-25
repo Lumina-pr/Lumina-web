@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import DeviceRow from "@/components/molecules/DeviceRow";
 import PageTitles from "../atoms/PageTitles";
 import Button from "../atoms/Button";
+import CreateDeviceModal from "../organisms/CreateDeviceModal"; 
 
 type Device = {
     id: number;
@@ -17,6 +18,19 @@ const DeviceTable: React.FC = () => {
         { id: 221, name: "Laptop", status: "Apagado" },
         { id: 323, name: "Celular", status: "Encendido" },
     ]);
+    
+    const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+
+    const generateRandomId = () => Math.floor(100 + Math.random() * 900);
+    const handleCreate = (name: string) => {
+        const newDevice: Device = {
+            id: generateRandomId(),
+            name,
+            status: "Apagado",
+        };
+        setDevices((prevDevices) => [...prevDevices, newDevice]);
+        setIsCreateModalOpen(false);
+    };
 
     const handleDelete = (id: number) => {
         setDevices((prevDevices) => prevDevices.filter((device) => device.id !== id));
@@ -37,8 +51,10 @@ const DeviceTable: React.FC = () => {
                 <Button 
                     text="Nuevo +" 
                     className="bg-amber-400 text-white px-3 py-2 rounded hover:bg-yellow-500"
+                    onClick={() => setIsCreateModalOpen(true)}
                 />
             </div>
+
             <table className="min-w-full border-collapse">
                 <thead>
                     <PageTitles />
@@ -56,6 +72,13 @@ const DeviceTable: React.FC = () => {
                     ))}
                 </tbody>
             </table>
+
+            {isCreateModalOpen && (
+                <CreateDeviceModal
+                    onConfirm={handleCreate}
+                    onClose={() => setIsCreateModalOpen(false)}
+                />
+            )}
         </div>
     );
 };
