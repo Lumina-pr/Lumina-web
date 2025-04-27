@@ -81,7 +81,7 @@ const CreateDeviceModal: React.FC<CreateDeviceModalProps> = ({ onClose, onConfir
                             }
                             onConfirm(name, type);
                         }}
-                        className="bg-green-600 text-white px-8 py-2 rounded hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                        className="bg-amber-400 text-white px-8 py-2 rounded hover:bg-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-500"
                     />
                     <Button
                         text="Cancelar"

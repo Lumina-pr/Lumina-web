@@ -5,6 +5,7 @@ import DeviceRow from "@/components/molecules/DeviceRow";
 import PageTitles from "../atoms/PageTitles";
 import Button from "../atoms/Button";
 import CreateDeviceModal from "../organisms/CreateDeviceModal";
+import DeviceCodeModal from "../organisms/DeviceCodeModal";
 import EditDeviceModal from "../organisms/EditDeviceModal";
 
 type Device = {
@@ -12,8 +13,8 @@ type Device = {
     name: string;
     status: "Encendido" | "Apagado";
     type: string;
+    pingStatus?: "Pong recibido" | "Error de conexión" | null;
     };
-
     const DeviceTable: React.FC = () => {
     const [devices, setDevices] = useState<Device[]>([
         { id: 110, name: "Tablet", status: "Apagado", type: "Móvil" },
@@ -21,18 +22,21 @@ type Device = {
     ]);
 
     const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
-    const [editingDevice, setEditingDevice] = useState<Device | null>(null); 
+    const [editingDevice, setEditingDevice] = useState<Device | null>(null);
+    const [createdDevice, setCreatedDevice] = useState<Device | null>(null); 
 
     const generateRandomId = () => Math.floor(100 + Math.random() * 900);
     const handleCreate = (name: string, type: string) => {
         const newDevice: Device = {
         id: generateRandomId(),
         name,
-        status: "Apagado",
-        type, 
+        status: "Encendido",
+        type,
+        pingStatus: null, 
         };
         setDevices((prevDevices) => [...prevDevices, newDevice]);
         setIsCreateModalOpen(false);
+        setCreatedDevice(newDevice);
     };
 
     const handleDelete = (id: number) => {
@@ -47,6 +51,23 @@ type Device = {
         );
         setEditingDevice(null);
     };
+    const handlePing = (id: number) => {
+        const success = Math.random() > 0.3; // Simulamos un ping: 70% éxito
+        setDevices((prevDevices) =>
+          prevDevices.map((device) =>
+            device.id === id
+              ? { ...device, pingStatus: success ? "Pong recibido" : "Error de conexión" }
+              : device
+          )
+        );
+        if (createdDevice?.id === id) {
+            setCreatedDevice((prevDevice) => ({
+              ...prevDevice!,
+              pingStatus: success ? "Pong recibido" : "Error de conexión",
+            }));
+          }
+        
+      };
 
     return (
         <div className="bg-white p-6 rounded-lg shadow">
@@ -94,6 +115,13 @@ type Device = {
             onClose={() => setEditingDevice(null)}
             />
         )}
+        {createdDevice && (
+         <DeviceCodeModal
+        device={createdDevice}
+        onClose={() => setCreatedDevice(null)}
+        onPing={handlePing}
+        />
+)}
         </div>
     );
 };
