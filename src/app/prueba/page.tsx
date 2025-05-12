@@ -8,33 +8,29 @@ const Page: React.FC = () => {
 
   useEffect(() => {
     if (isConnected) {
-      console.log(`Conectado y escuchando mensajes.`);
+      console.log("Conectado y escuchando mensajes.");
     }
   }, [isConnected, emit]);
 
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">
-        Estado del WebSocket: {isConnected ? "Conectado" : "Desconectado"}
-      </h1>
+    <div className="container max-w-full px-6 py-8 bg-gray-100">
+      <div className="mb-6 p-6 bg-white rounded-2xl shadow-md">
+        <h1 className="text-3xl font-bold mb-2 text-gray-800">Monitoreo en Tiempo Real</h1>
+        <p className="text-lg text-gray-600">
+          Estado del WebSocket:{" "}
+          <span className={`font-semibold ${isConnected ? "text-green-600" : "text-red-500"}`}>
+            {isConnected ? "Conectado" : "Desconectado"}
+          </span>
+        </p>
+      </div>
+            {/* Power Chart */}
 
-      {/* Power Chart */}
-      <div className="mb-6">
-        <h2 className="text-xl font-semibold mb-2">Gráfico de Potencia</h2>
+
+      <div className="mb-8 p-6 bg-white rounded-2xl shadow-md">
+        <h2 className="text-2xl font-semibold mb-4 text-yellow-400">Gráfico de Potencia</h2>
         <PowerChart messages={messages} />
       </div>
 
-      {/* Messages List */}
-      <div>
-        <h2 className="text-xl font-semibold mb-2">Mensajes Recibidos</h2>
-        <ul className="border rounded p-4 ">
-          {messages.map((msg, index) => (
-            <li key={index} className="mb-1">
-              {JSON.stringify(msg)}
-            </li>
-          ))}
-        </ul>
-      </div>
     </div>
   );
 };
