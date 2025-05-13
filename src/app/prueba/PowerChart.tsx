@@ -50,11 +50,13 @@ const PowerChart: React.FC<PowerChartProps> = ({ messages }) => {
     ),
     datasets: [
       {
-        label: "Power (Watts)",
+        label: "Potencia (Watts)",
         data: messages.map((msg) => msg.power || msg.current * msg.voltage),
-        borderColor: "rgb(75, 192, 192)",
-        backgroundColor: "rgba(75, 192, 192, 0.5)",
+        borderColor: "#e3c20c",
+        backgroundColor: "rgba(227, 194, 12, 0.2)",
         tension: 0.4,
+        pointRadius: 2,
+        pointBackgroundColor: "#4F46E5",
       },
     ],
   };
@@ -66,14 +68,14 @@ const PowerChart: React.FC<PowerChartProps> = ({ messages }) => {
       x: {
         title: {
           display: true,
-          text: "Time",
+          text: "Hora",
         },
       },
       y: {
         beginAtZero: true,
         title: {
           display: true,
-          text: "Power (Watts)",
+          text: "Potencia (Watts)",
         },
       },
     },
@@ -83,7 +85,7 @@ const PowerChart: React.FC<PowerChartProps> = ({ messages }) => {
       },
       title: {
         display: true,
-        text: "Real-time Power Consumption",
+        text: "Consumo de Potencia en Tiempo Real",
       },
     },
   };
@@ -96,7 +98,7 @@ const PowerChart: React.FC<PowerChartProps> = ({ messages }) => {
   }, [messages]);
 
   return (
-    <div style={{ height: "400px", width: "100%" }}>
+    <div className="w-full h-[400px]">
       <Line ref={chartRef} options={options} data={chartData} />
     </div>
   );
