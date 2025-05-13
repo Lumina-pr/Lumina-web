@@ -28,7 +28,22 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
+        {/* Componente para sincronizar el token con cookies */}
+        <AuthSyncLoader />
       </body>
     </html>
   );
 }
+
+// Necesitamos cargar el componente con un Client Component
+function AuthSyncLoader() {
+  return (
+    <div suppressHydrationWarning>
+      {typeof window === 'undefined' ? null : <ClientAuth />}
+    </div>
+  );
+}
+
+// Usamos dynamic import con ssr:false para cargar el componente solo en cliente
+import dynamic from 'next/dynamic';
+const ClientAuth = dynamic(() => import('@/components/auth/AuthSync'), { ssr: false });
