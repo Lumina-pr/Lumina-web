@@ -7,7 +7,8 @@
     }
 
     const Imagen: React.FC<ImagenProps> = ({ src, alt, className }) => {
-        return <img src={src} alt={alt} className={`w-full h-full object-cover ${className}`} />;
+        // eslint-disable-next-line @next/next/no-img-element
+        return <img src={src} alt={alt} className={`object-cover ${className}`} />;
     };
-
+    
     export default Imagen;

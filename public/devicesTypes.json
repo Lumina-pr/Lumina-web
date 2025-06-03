@@ -1,0 +1,10 @@
+[
+    { "id": 1, "type": "Móvil" },
+    { "id": 2, "type": "De mesa" },
+    { "id": 3, "type": "Reloj" },
+    { "id": 4, "type": "Cocina" },
+    { "id": 5, "type": "Almacenamiento" },
+    { "id": 6, "type": "Iluminacion" },
+    { "id": 7, "type": "Entrada" },
+    { "id": 8, "type": "Salida" }
+]
