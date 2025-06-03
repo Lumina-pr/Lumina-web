@@ -1,31 +1,70 @@
-'use client';
+"use client";
 
-import React, { useState } from "react";
+import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSync } from "@fortawesome/free-solid-svg-icons";
 
 interface DeviceStatusProps {
-    initialStatus: "Encendido" | "Apagado";
+  pingStatus?: "online" | "offline" | "loading" | null;
+  onPingDevice?: () => void;
+}
+
+const DeviceStatus: React.FC<DeviceStatusProps> = ({
+  pingStatus,
+  onPingDevice,
+}) => {
+  // Define button appearance based on pingStatus
+  const getButtonStyle = () => {
+    if (pingStatus) {
+      switch (pingStatus) {
+        case "online":
+          return "px-1 bg-green-100 text-green-700 border-green-300";
+        case "offline":
+          return "px-1 bg-red-100 text-red-700 border-red-300";
+        case "loading":
+          return "px-1 bg-amber-100 text-amber-700 border-amber-300";
+        default:
+          return "px-1 bg-gray-100 text-gray-700 border-gray-300";
+      }
     }
+    return "px-1 bg-gray-100 text-gray-700 border-gray-300";
+  };
 
-    const DeviceStatus: React.FC<DeviceStatusProps> = ({ initialStatus }) => {
-    const [status, setStatus] = useState<"Encendido" | "Apagado">(initialStatus);
+  // Get button text based on pingStatus
+  const getButtonText = () => {
+    if (pingStatus) {
+      switch (pingStatus) {
+        case "online":
+          return "Conectado";
+        case "offline":
+          return "Desconectado";
+        case "loading":
+          return "Verificando...";
+        default:
+          return "Desconocido";
+      }
+    }
+    return "Desconocido";
+  };
 
-    const toggleStatus = () => {
-        setStatus(prev => (prev === "Encendido" ? "Apagado" : "Encendido"));
-    };
-
-    const statusStyle =
-        status === "Encendido"
-        ? "px-1 bg-green-100 text-green-700 border-green-300"
-        : "px-1 bg-red-100 text-red-700 border-red-300";
-
-    return (
-        <button
-            onClick={toggleStatus}
-            className={`py-0.2 text-xs w-20 rounded-sm border ${statusStyle} text-center mx-auto`}
-        >
-            {status}
-        </button>
-    );
+  return (
+    <div className="flex flex-col items-center">
+      <button
+        onClick={onPingDevice}
+        disabled={pingStatus === "loading"}
+        className={`py-1 text-xs w-24 rounded-sm border ${getButtonStyle()} text-center flex items-center justify-center`}
+      >
+        {pingStatus === "loading" && (
+          <FontAwesomeIcon
+            icon={faSync}
+            className="animate-spin mr-1"
+            size="sm"
+          />
+        )}
+        {getButtonText()}
+      </button>
+    </div>
+  );
 };
 
 export default DeviceStatus;

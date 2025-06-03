@@ -34,13 +34,15 @@ export const useAuthStore = create<AuthState>((set) => ({
         password,
       });
 
-      const { token, user } = response.data;
+      console.log(response);
+
+      const { access_token, user } = response.data;
 
       // Guardar token en sessionStorage
-      sessionStorage.setItem("token", token);
+      sessionStorage.setItem("token", access_token);
 
       set({
-        token,
+        token: access_token,
         user,
         isLoggedIn: true,
         isLoading: false,
@@ -68,9 +70,11 @@ export const useAuthStore = create<AuthState>((set) => ({
     }
   },
 
-  logout: () => {
+  logout: async () => {
     // Eliminar token de sessionStorage
     sessionStorage.removeItem("token");
+
+    await api.post("/auth/logout");
 
     set({
       token: null,

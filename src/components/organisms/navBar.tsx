@@ -35,7 +35,7 @@ function SideNavBar() {
   const handleLogout = () => {
     logout();
     setShowLogoutModal(false);
-    router.push("/homePage");
+    router.push("/");
   };
 
   return (

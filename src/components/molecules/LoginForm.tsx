@@ -11,8 +11,8 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 const LoginForm: React.FC = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("user@example.com");
+  const [password, setPassword] = useState("StrongP@ssw0rd123");
   const { login, isLoading, error } = useAuthStore();
   const router = useRouter();
 

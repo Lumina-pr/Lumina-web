@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useCallback } from "react";
 import useSocketStore from "@/store/socketStore";
 import getSocket from "@/services/socket";
 
@@ -17,16 +17,29 @@ const useSocket = () => {
       console.log("Desconectado del WebSocket");
     });
 
-    socket.on("esp32-001", (message) => {
-      addMessage(message);
-    });
-
     return () => {
       socket.off("connect");
       socket.off("disconnect");
-      socket.off("receiveMessage");
     };
-  }, [socket, setConnected, addMessage]);
+  }, [socket, setConnected]);
+
+  const listenToDevice = useCallback(
+    (deviceId: string) => {
+      // Clean up any existing listeners for this event first
+      socket.off(deviceId);
+
+      // Add new listener
+      socket.on(deviceId, (message) => {
+        console.log(`Message received from ${deviceId}:`, message);
+        addMessage(message);
+      });
+
+      return () => {
+        socket.off(deviceId);
+      };
+    },
+    [socket, addMessage]
+  );
 
   const emit = <T>(event: string, data: T) => {
     socket.emit(event, data);
@@ -36,6 +49,7 @@ const useSocket = () => {
     isConnected: useSocketStore((state) => state.isConnected),
     messages: useSocketStore((state) => state.messages),
     emit,
+    listenToDevice,
   };
 };
 
