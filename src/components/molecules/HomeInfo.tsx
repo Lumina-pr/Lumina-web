@@ -4,12 +4,10 @@ const HomeInfo: React.FC = () => {
     return (
         <div className="w-full max-w-lg text-center md:text-left">
             <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-4 sm:mb-6 leading-tight">
-                LOREM IPSUM <br /> NEQUE PORRO QUI <br /> DOLOREM
+                Sistema de gestión <br /> de eficiencia energética <br />
             </h1>
             <p className="text-sm sm:text-base text-gray-500 mb-6 sm:mb-8 max-w-[90%] md:max-w-none mx-auto md:mx-0">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                veniam, quis nostrud exercitation.
+            Lumina es una solución innovadora basada en tecnología IoT que permite monitorear, analizar y optimizar el consumo energético en entornos universitarios. A través de una aplicación web y móvil, integra sensores inteligentes para ofrecer control remoto, programación eficiente y análisis en tiempo real, promoviendo un uso responsable y sostenible de la energía.
             </p>
 
             <div className="flex flex-col sm:flex-row justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
