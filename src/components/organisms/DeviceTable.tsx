@@ -8,7 +8,12 @@ import CreateDeviceModal from "../organisms/CreateDeviceModal";
 import EditDeviceModal from "../organisms/EditDeviceModal";
 import { useDeviceStore } from "@/store/deviceStore";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSync } from "@fortawesome/free-solid-svg-icons";
+import {
+  faSync,
+  faPenToSquare,
+  faTrash,
+} from "@fortawesome/free-solid-svg-icons";
+import DeviceStatus from "../atoms/DeviceStatus";
 
 // Extend the Device type to include only what we need
 type ExtendedDevice = {
@@ -147,26 +152,68 @@ const DeviceTable: React.FC = () => {
           No hay dispositivos disponibles.
         </p>
       ) : (
-        <div className="overflow-x-auto w-full">
-          <table className="w-full table-fixed">
-            <thead>
-              <PageTitles />
-            </thead>
-            <tbody>
-              {extendedDevices.map((device) => (
-                <DeviceRow
-                  key={device.id}
-                  id={device.id}
-                  name={device.name}
-                  pingStatus={device.pingStatus}
-                  onEditClick={() => setEditingDevice(device)}
-                  onDelete={() => handleDelete(device.id)}
-                  onShowChart={() => {}}
-                />
-              ))}
-            </tbody>
-          </table>
-        </div>
+        <>
+          {/* Vista de tabla para pantallas medianas y grandes */}
+          <div className="hidden sm:block overflow-x-auto w-full">
+            <table className="w-full table-fixed">
+              <thead>
+                <PageTitles />
+              </thead>
+              <tbody>
+                {extendedDevices.map((device) => (
+                  <DeviceRow
+                    key={device.id}
+                    id={device.id}
+                    name={device.name}
+                    pingStatus={device.pingStatus}
+                    onEditClick={() => setEditingDevice(device)}
+                    onDelete={() => handleDelete(device.id)}
+                    onShowChart={() => {}}
+                  />
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Vista de tarjetas para móviles */}
+          <div className="sm:hidden grid grid-cols-1 gap-4">
+            {extendedDevices.map((device) => (
+              <div
+                key={device.id}
+                className="bg-white border rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow"
+              >
+                <div className="flex justify-between items-start mb-2">
+                  <div>
+                    <p className="text-sm text-gray-500">ID: {device.id}</p>
+                    <h3 className="text-lg font-medium text-blue-600">
+                      {device.name}
+                    </h3>
+                  </div>
+                  <DeviceStatus
+                    pingStatus={device.pingStatus}
+                    onPingDevice={() => pingDevice(device.id)}
+                  />
+                </div>
+                <div className="flex justify-end gap-4 mt-4">
+                  <button
+                    onClick={() => setEditingDevice(device)}
+                    className="flex items-center text-blue-600 hover:text-blue-800 text-sm"
+                  >
+                    <FontAwesomeIcon icon={faPenToSquare} className="mr-2" />
+                    Editar
+                  </button>
+                  <button
+                    onClick={() => handleDelete(device.id)}
+                    className="flex items-center text-red-600 hover:text-red-800 text-sm"
+                  >
+                    <FontAwesomeIcon icon={faTrash} className="mr-2" />
+                    Eliminar
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </>
       )}
 
       {isCreateModalOpen && (

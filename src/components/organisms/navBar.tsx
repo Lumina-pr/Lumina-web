@@ -38,13 +38,22 @@ function SideNavBar() {
     router.push("/");
   };
 
+  const menuItems = [
+    { title: "Home", icon: <HomeIcon />, route: "/home/dashboard" },
+    { title: "Energy", icon: <BoltIcon />, route: "#" },
+    { title: "Devices", icon: <ComputerIcon />, route: "/home/devices" },
+    { title: "Reports", icon: <FaChartBar />, route: "#" },
+    { title: "User", icon: <UserIcon />, route: "/home/user" },
+  ];
+
   return (
     <>
+      {/* Sidebar solo visible en pantallas md+ */}
       <div
         onMouseEnter={() => setOpen(true)}
         onMouseLeave={() => setOpen(false)}
-        className={`fixed top-0 left-0 h-screen bg-white shadow-md p-2 
-          ${open ? "w-72" : "w-20"} transition-all duration-500 flex flex-col`}
+        className={`hidden md:flex fixed top-0 left-0 h-screen bg-white shadow-md p-2 
+          ${open ? "w-72" : "w-20"} transition-all duration-500 flex-col`}
       >
         <div className="flex items-center h-20 gap-2">
           <Image
@@ -64,17 +73,7 @@ function SideNavBar() {
         </div>
 
         <ul className="mt-4 flex-grow">
-          {[
-            { title: "Home", icon: <HomeIcon />, route: "/home/dashboard" },
-            { title: "Energy", icon: <BoltIcon />, route: "#" },
-            {
-              title: "Devices",
-              icon: <ComputerIcon />,
-              route: "/home/devices",
-            },
-            { title: "Reports", icon: <FaChartBar />, route: "#" },
-            { title: "User", icon: <UserIcon />, route: "/home/user" },
-          ].map((menu, index) => (
+          {menuItems.map((menu, index) => (
             <li
               key={index}
               onClick={() => handleMenuClick(menu.route)}
@@ -113,6 +112,29 @@ function SideNavBar() {
             </span>
           </li>
         </ul>
+      </div>
+
+      {/* Navbar inferior solo en móviles */}
+      <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white shadow-md grid grid-cols-5 p-2">
+        {menuItems.map((menu, index) => (
+          <button
+            key={index}
+            onClick={() => handleMenuClick(menu.route)}
+            className={`flex flex-col items-center ${
+              selected === menu.route ? "text-amber-400" : "text-black"
+            } hover:text-amber-400 transition-colors`}
+          >
+            <span className="text-2xl">{menu.icon}</span>
+            <span className="text-xs">{menu.title}</span>
+          </button>
+        ))}
+        <button
+          onClick={() => setShowLogoutModal(true)}
+          className="flex flex-col items-center text-black hover:text-amber-400 transition-colors"
+        >
+          <FaSignOutAlt className="text-2xl" />
+          <span className="text-xs">Log out</span>
+        </button>
       </div>
 
       {showLogoutModal && (

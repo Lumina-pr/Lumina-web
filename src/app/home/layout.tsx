@@ -27,9 +27,8 @@ export default function HomeLayout({
       <SideNavBar />
 
       <main
-        className={`flex-1 transition-all duration-500 ${
-          isNavOpen ? "ml-72" : "ml-20"
-        }`}
+        className={`flex-1 transition-all duration-500 
+          ${isNavOpen ? "md:ml-72" : "md:ml-20"} ml-0`}
       >
         {children}
       </main>
