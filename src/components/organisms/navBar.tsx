@@ -46,6 +46,11 @@ function SideNavBar() {
     { title: "User", icon: <UserIcon />, route: "/home/user" },
   ];
 
+  // Filtrar los items para móvil
+  const mobileMenuItems = menuItems.filter(
+    (item) => item.title === "Home" || item.title === "Devices" || item.title === "User"
+  );
+
   return (
     <>
       {/* Sidebar solo visible en pantallas md+ */}
@@ -115,8 +120,8 @@ function SideNavBar() {
       </div>
 
       {/* Navbar inferior solo en móviles */}
-      <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white shadow-md grid grid-cols-5 p-2">
-        {menuItems.map((menu, index) => (
+      <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white shadow-md grid grid-cols-4 p-2">
+        {mobileMenuItems.map((menu, index) => (
           <button
             key={index}
             onClick={() => handleMenuClick(menu.route)}
