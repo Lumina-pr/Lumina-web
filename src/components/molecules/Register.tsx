@@ -7,7 +7,8 @@ import Label from "../atoms/Label";
 import Divider from "../atoms/Divider";
 import { FaGoogle, FaApple, FaFacebook } from "react-icons/fa";
 import Link from 'next/link';
-import { useRouter } from "next/navigation";  
+import { useRouter } from "next/navigation";
+import { useAuthStore } from "../../store/authStore";
 
 const LoginForm: React.FC = () => {
     const [email, setEmail] = useState("");
@@ -15,11 +16,25 @@ const LoginForm: React.FC = () => {
     const [nombre, setNombre] = useState("");
     
     const router = useRouter(); 
+    const register = useAuthStore((state) => state.register);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        console.log("Login con:", { email, password, nombre });
-        router.push("/home/dashboard"); 
+        
+        try {
+            console.log({ name: nombre, email, password });
+            // Llamar a la función register del store
+            await register({ 
+                name: nombre, 
+                email, 
+                password 
+            });
+
+            // Redirigir al dashboard si el registro es exitoso
+            router.push("/home/dashboard");
+        } catch (error) {
+            console.error("Error al registrar usuario:", error);
+        }
     };
 
     return (

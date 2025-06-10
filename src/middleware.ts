@@ -3,7 +3,7 @@ import { NextResponse, NextRequest } from "next/server";
 
 export async function middleware(req: NextRequest) {
   // Corrección: Usamos "token" para coincidir con el nombre de la cookie que configuramos
-  const token = req.cookies.get("authToken")?.value || null;
+  const token = req.cookies.get("connect.sid")?.value || null;
 
   if (!token) {
     // Redirect to login page if not authenticated
