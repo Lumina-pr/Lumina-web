@@ -14,6 +14,7 @@ interface AuthState {
   isLoading: boolean;
   error: string | null;
   login: (email: string, password: string) => Promise<void>;
+  register: (userData: { name: string; email: string; password: string }) => Promise<void>;
   logout: () => void;
 }
 
@@ -65,6 +66,32 @@ export const useAuthStore = create<AuthState>((set) => ({
 
       set({
         isLoading: false,
+        error: errorMessage,
+      });
+    }
+  },
+  register: async (userData: { name: string; email: string; password: string }) => {
+    try {
+      set({ isLoading: true, error: null });
+  
+      // Llamada a la API para registrar al usuario
+      const response = await api.post("/auth/register", userData);
+      console.log("Respuesta de la API:", response);
+      // Actualizar el estado del store con los datos del usuario registrado
+      set({
+        token: response.data.token,
+        user: response.data.user,
+        isLoggedIn: true,
+        isLoading: false,
+        error: null,
+      });
+  
+      // Guardar el token en sessionStorage
+      sessionStorage.setItem("token", response.data.token);
+    } catch (error) {
+      const errorMessage = error.response?.data?.message || "Error al registrar usuario";
+  
+      set({isLoading: false,
         error: errorMessage,
       });
     }
